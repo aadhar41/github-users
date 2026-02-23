@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 import Followers from './Followers';
 const User = () => {
-  return <h2>search component</h2>;
+  return (
+    <>
+      <section className="section">
+        <Wrapper>
+          <Card />
+          <Followers />
+        </Wrapper>
+      </section>
+    </>
+  );
 };
 
 const Wrapper = styled.div`
+  margin: 1rem 1rem;
   padding-top: 2rem;
   display: grid;
   gap: 3rem 2rem;

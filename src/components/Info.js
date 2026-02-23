@@ -1,15 +1,57 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
-  return <h2>user info component</h2>;
+  const { githubUser } = useContext(GithubContext);
+  const { public_repos, followers, public_gists, following } = githubUser;
+  return (
+    <Wrapper>
+      <div className="item">
+        <span className="pink">
+          <GoRepo />
+        </span>
+        <div>
+          <h3>{public_repos}</h3>
+          <p>repos</p>
+        </div>
+      </div>
+      <div className="item">
+        <span className="green">
+          <FiUsers />
+        </span>
+        <div>
+          <h3>{followers}</h3>
+          <p>followers</p>
+        </div>
+      </div>
+      <div className="item">
+        <span className="purple">
+          <GoGist />
+        </span>
+        <div>
+          <h3>{public_gists}</h3>
+          <p>gists</p>
+        </div>
+      </div>
+      <div className="item">
+        <span className="yellow">
+          <FiUserPlus />
+        </span>
+        <div>
+          <h3>{following}</h3>
+          <p>following</p>
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`
   display: grid;
+  margin: 1rem 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem 2rem;
   @media (min-width: 640px) {
