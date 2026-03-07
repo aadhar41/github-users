@@ -1,115 +1,151 @@
-## Starter Project
 
-- css provided (global styles, styled components)
-- folders/files already setup
-- all imports included (warnings)
-- index.js for easier imports
+# GitHub User Search
 
-## Styled Components
+A comprehensive React application designed to search for GitHub users, visualize profile statistics, and explore repository data via the GitHub API.
 
-[Styled-Components - Main Docs](https://styled-components.com/)
+![Login Page](./src/images/login-img.svg)
+
+## 🚀 Features
+
+* **User Search**: Real-time search to retrieve comprehensive GitHub profile information.
+* **Dynamic Charts**: Data visualization for Top Languages, Most Popular Repos, and Most Forked Repos using FusionCharts.
+* **Detailed Profiles**: Displays user bio, company, location, blog, and more.
+* **Followers List**: Browse and navigate to user followers with quick links.
+* **Secure Authentication**: Session management powered by Auth0.
+* **Responsive Design**: Mobile-friendly layout using Styled Components.
+* **Rate Limit Tracking**: Real-time monitoring of remaining GitHub API requests.
+
+## 🛠️ Tech Stack
+
+* **Frontend**: [React](https://reactjs.org/)
+* **Styling**: [Styled Components](https://styled-components.com/)
+* **Charts**: [FusionCharts](https://www.fusioncharts.com/)
+* **Routing**: [React Router Dom (v5)](https://reactrouter.com/web/guides/quick-start)
+* **API Requests**: [Axios](https://axios-http.com/)
+* **Authentication**: [Auth0](https://auth0.com/)
+* **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+* Node.js and npm installed.
+* A GitHub account.
+* An Auth0 account.
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/aadhar41/github-users.git
+cd github-users
+
+```
+
+
+2. **Install dependencies**
+```bash
+npm install
+
+```
+
+
+3. **Environment Variables**
+Create a `.env` file in the root directory:
+```env
+REACT_APP_AUTH0_DOMAIN=your_auth0_domain
+REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id
+
+```
+
+
+4. **Run the application**
+```bash
+npm start
+
+```
+
+
+The app will run at `http://localhost:3000`.
+
+---
+
+## 🏗️ Technical Guide
+
+### Styled Components
+
+For styling, use the `styled-components` library.
 
 ```jsx
 import styled from "styled-components";
 
-const ReactComponent = () => {
- // logic here
- return <Wrapper>
- {some content}
- </Wrapper>
+const Component = () => {
+  return <Wrapper>Content</Wrapper>;
 }
 
-
-const Wrapper = styled.htmlElement`
-write your styles here
-`
-export default ReactComponent
-```
-
-## React Icons
-
-[React Icons - Main Docs](https://react-icons.github.io/react-icons/)
-
-```jsx
-import { FiUsers, FiUserPlus } from 'react-icons/fi';
-<FiUsers className='nameOfTheClass'> </FiUsers>;
-```
-
-## React Router Dom
-
-version used - "react-router-dom": "^5.2.0",
-
-- [react-router-dom - Main Docs](https://reactrouter.com/web/guides/quick-start)
-
-- <Switch> renders the first child <Route> that matches
-- A <Route path="*"> always matches
-
-## Gihthub API
-
-- [Root Endpoint](https://api.github.com)
-- [Get User](https://api.github.com/users/aadhar41)
-- [Repos](https://api.github.com/users/aadhar41/repos?per_page=100)
-- [Followers](https://api.github.com/users/aadhar41/followers)
-- [Rate Limit](https://api.github.com/rate_limit)
-
-  For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
-
-## Fusion Charts
-
-- [Fusion Charts - Main Docs](https://www.fusioncharts.com/)
-- [First React Chart](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react)
-- [List Of Charts](https://www.fusioncharts.com/dev/chart-guide/list-of-charts)
-- [Themes](https://www.fusioncharts.com/dev/themes/introduction-to-themes)
-
-## Auth0
-
-- [Auth0 - Main Docs](https://auth0.com/)
-
-- Create Application
-- Choose : Single Page Web Applications
-- Choose : React
-- Go to Settings Tab
-- Copy/Paste Domain, ClientID - can be public (or use .env)
-- Add Domain -
-  for now http://localhost:3000 (DON'T COPY PASTE FROM URL BAR)
-
-  - Allowed Callback URLs
-  - Allowed Logout URLs
-  - Allowed Web Origins
-  - SAVE CHANGES!!!!!!!!!!!!!!!
-
-- Connections
-  email,social
-
-- [React SDK Docs](https://auth0.com/docs/libraries/auth0-react)
-- [REACT SDK API Docs](https://auth0.github.io/auth0-react/)
-
-## Deployment
-
-[Netlify](https://www.netlify.com/)
-
-## Additional Info
-
-#### Redirects with react-router-dom
-
-In order for routing to work on netlify, redirects was added to the public folder
-
-- \_redirects file in public
+const Wrapper = styled.article`
+  /* Add your CSS here */
+`;
 
 ```
 
-/*    /index.html   200
+### Routing
 
-```
+This project uses `react-router-dom` v5.2.0.
 
-[Redirects Blog Post](https://dev.to/dance2die/page-not-found-on-netlify-with-react-router-58mc)
+* `<Switch>` renders the first matching child `<Route>`.
+* A `<Route path="*">` serves as a catch-all for undefined paths.
 
-#### Warnings and create-react-app
+### GitHub API Endpoints
 
-package.json
+* **Root**: `https://api.github.com`
+* **User**: `https://api.github.com/users/{username}`
+* **Repos**: `https://api.github.com/users/{username}/repos?per_page=100`
+* **Followers**: `https://api.github.com/users/{username}/followers`
+* **Rate Limit**: `https://api.github.com/rate_limit`
 
-```js
+> **Note**: Unauthenticated requests are limited to 60 requests per hour based on the originating IP address.
+
+---
+
+## 🔐 Auth0 Configuration
+
+1. Create a **Single Page Web Application** in your Auth0 Dashboard.
+2. In **Settings**, configure the following for `http://localhost:3000`:
+* Allowed Callback URLs
+* Allowed Logout URLs
+* Allowed Web Origins
+
+
+3. Activate desired **Connections** (Email/Social).
+4. Copy your **Domain** and **Client ID** to your `.env` file.
+
+---
+
+## 🚀 Deployment
+
+### Netlify Setup
+
+This project is optimized for [Netlify](https://www.netlify.com/).
+
+**1. Fix Build Warnings**
+Update your `package.json` to prevent build failures due to warnings:
+
+```json
 "build": "CI= react-scripts build",
+
 ```
 
-[create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
+**2. Handling Client-Side Routing**
+To ensure React Router works correctly on Netlify, create a `_redirects` file in the `public` folder:
+
+```text
+/* /index.html   200
+
+```
+## ⚓ API Reference
+
+- [GitHub API Documentation](https://docs.github.com/en/rest)
+- [Rate Limit Info](https://api.github.com/rate_limit)
