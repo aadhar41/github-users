@@ -5,25 +5,61 @@ import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 
 const Repos = () => {
   const { githubRepos } = useContext(GithubContext);
-  const { stars, forks } = githubRepos;
   // most popular languages
   const languages = githubRepos.reduce((total, item) => {
     const { language, stargazers_count } = item;
-    if (language) {
-      total[language] = (total[language] || 0) + stargazers_count;
+    if (!language) return total;
+    if (!total[language]) {
+      total[language] = { label: language, value: 1, stars: stargazers_count };
+    } else {
+      total[language] = {
+        ...total[language],
+        value: total[language].value + 1,
+        stars: total[language].stars + stargazers_count,
+      };
     }
     return total;
   }, {});
 
-  const top5Languages = Object.entries(languages).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  const top5LanguagesObject = Object.fromEntries(top5Languages);
+  const mostUsed = Object.values(languages)
+    .sort((a, b) => {
+      return b.value - a.value;
+    })
+    .slice(0, 5);
+
+  // most stars per language
+  const mostPopular = Object.values(languages)
+    .sort((a, b) => {
+      return b.stars - a.stars;
+    })
+    .map((item) => {
+      return { ...item, value: item.stars };
+    })
+    .slice(0, 5);
+
+  // stars, forks
+  let { stars, forks } = githubRepos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item;
+      total.stars[stargazers_count] = { label: name, value: stargazers_count };
+      total.forks[forks] = { label: name, value: forks };
+      return total;
+    },
+    {
+      stars: {},
+      forks: {},
+    }
+  );
+
+  stars = Object.values(stars).slice(-5).reverse();
+  forks = Object.values(forks).slice(-5).reverse();
 
   return (
     <Wrapper>
-      <Pie3D data={top5LanguagesObject} />
-      <Doughnut2D data={top5LanguagesObject} />
-      <Column3D data={top5LanguagesObject} />
-      <Bar3D data={top5LanguagesObject} />
+      <Pie3D data={mostUsed} />
+      <Doughnut2D data={mostPopular} />
+      <Column3D data={stars} />
+      <Bar3D data={forks} />
     </Wrapper>
   );
 };

@@ -6,13 +6,6 @@ import ReactFusioncharts from "react-fusioncharts";
 charts(FusionCharts);
 
 const Doughnut2D = ({ data }) => {
-  const chartData = Object.keys(data).map((key) => {
-    return {
-      label: key,
-      value: data[key],
-    };
-  });
-
   const dataSource = {
     chart: {
       caption: "Stars Per Language",
@@ -21,7 +14,7 @@ const Doughnut2D = ({ data }) => {
       doughnutRadius: "45%",
       showPercentValues: 0,
     },
-    data: chartData,
+    data,
   };
 
   return (
