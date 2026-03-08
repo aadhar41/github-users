@@ -124,6 +124,17 @@ This project uses `react-router-dom` v5.2.0.
 
 ---
 
+## 🤝 Community & Contributions
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+* **Code of Conduct**: Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to understand the standards of behavior we expect in our community.
+* **Contributing**: Check out the [Contributing Guidelines](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+* **Security**: If you find a security vulnerability, please follow our [Security Policy](SECURITY.md).
+* **Issue Templates**: When opening an issue, please use the provided [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md) or [Feature Request](.github/ISSUE_TEMPLATE/feature_request.md) templates.
+
+---
+
 ## 🚀 Deployment
 
 ### Netlify Setup
@@ -149,3 +160,9 @@ To ensure React Router works correctly on Netlify, create a `_redirects` file in
 
 - [GitHub API Documentation](https://docs.github.com/en/rest)
 - [Rate Limit Info](https://api.github.com/rate_limit)
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
